@@ -1,0 +1,66 @@
+{% extends 'app_second/components/base.html' %}
+{% load static %}
+
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+  Home Page
+{% endblock title %}
+
+{% block navbar %}
+    <div class="p-1 m-1">
+      {% include 'app_second/components/navbar.html' %}
+    </div>
+{% endblock navbar %}
+
+{% block main %}
+{% if form.errors %}
+<p>there was an error with your form</p>
+{% endif %}
+<main class="home-container flex-shrink-0 bg-light" style="height: 45rem">
+    <div class="container-fluid">
+        <div class="container">
+            <div class="container-fluid">
+                <div class="text-center">
+                    <div class="col-lg-6 mx-auto m-2">
+                      <h2>
+                        Todo List MVT Django
+                      </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flex-shrink-0">
+        <div class="container-fluid">
+            <div class="container-how">
+                <div class="mx-auto">
+                  <form
+                  action="{% url 'user_create' %}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                  target="_self"
+                  class="form-control form-control-lg mx-auto"
+                  style="width: 35rem;"
+              >
+                  {% csrf_token %}
+                  <p>Register to post</p>
+                  {{ form.as_p }}
+                      <input type="email" class="form-control" name="email" placeholder="email">
+                    <input type="submit" class="btn btn-primary mt-3" value="submit">
+                </form>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+  </main>
+</main>
+
+{% endblock main %}
+
+{% block footer %}
+  {% include 'app_second/components/footer.html' %}
+{% endblock footer %}
+

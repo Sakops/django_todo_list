@@ -1,0 +1,45 @@
+{% extends "app_second/components/base.html" %}
+{% load static %}
+
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+  Creating Todos
+{% endblock title %}
+
+{% block navbar %}
+    {% include 'app_second/components/navbar.html' %}
+{% endblock navbar %}
+
+{% block main %}
+<main class="flex-shrink-0 container">
+    <div class="d-flex text-center">
+    {% if user.is_authenticated %}
+    <form
+        action="{% url 'todo_create' %}"
+        method="POST"
+        enctype="multipart/form-data"
+        target="_self"
+        class="form-control form-control-lg mx-auto m-5"
+        style="width: 35rem; height: 40rem;"
+    >
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">Create Todo List</h1>
+        {{ form.as_p }}
+
+          <input type="submit" class="btn btn-primary mt-3" value="submit">
+      </form>
+      {% else %}
+      <div class="container mt-2">
+        <div class="alert alert-warning" role="alert">
+            please <a href="{% url 'login_user' %}" class="alert-link">login</a> to create todo list     
+      </div> 
+      {% endif %}
+</main>
+{% endblock main %}
+
+
+{% block footer %}
+  {% include 'app_second/components/footer.html' %}
+{% endblock footer %}

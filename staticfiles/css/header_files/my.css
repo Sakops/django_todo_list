@@ -1,0 +1,16 @@
+ul:hover {
+  color: #3a3af1;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* body {
+  background-image: url('mountains.jpg');
+}
+* body .home-container form {
+  background: transparent;
+  width: 40rem;
+  margin: auto;
+}

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}header{% endblock title %}
+    </title>
+    <link rel="icon" href="{% static 'img/logo512.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/my.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+    {% block head %}{% endblock head %}
+</head>
+<body class="d-flex flex-column h-100">
+    
+    <div>
+    {% block navbar %}{% endblock navbar %}
+    <div class="flex-shrink-0" style="min-height: 80vh;">
+        {% block main %}body{% endblock main %}
+    </div>
+    {% block footer %}{% endblock footer %}
+    </div>
+    <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+</body>
+</html>

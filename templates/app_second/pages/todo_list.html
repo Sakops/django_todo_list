@@ -1,0 +1,87 @@
+{% extends "app_second/components/base.html" %}
+{% load static %}
+
+{% block head %}{% endblock head %}
+
+{% block title %}
+    Todo List
+{% endblock title %}
+
+{% block navbar %}
+    {% include 'app_second/components/navbar.html' %}
+{% endblock navbar %}
+
+{% block main %}
+{% if user.is_authenticated %}
+
+<main class="flex-shrink-0">
+        <div>
+            {% include 'app_second/components/paginator.html' %}
+        </div>
+        logged in user_id: {{ user.id }}
+
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        {% if not page %}
+            <div class="text-center">
+                No data!
+            </div>
+        {% else %}
+            {% for i in page %}
+                <div class="feature col">
+                    <span>{{ task_count }}</span>
+                    {% if i.is_completed %}
+                        <div class="text-white">
+                            <i class="fa-solid fa-tag"></i>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div class="feature-icon bg-success bg-gradient">
+                            <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+                        </div>
+                        <div class="bg-light">
+                        <h2>{{i.title}}</h2>
+                        <p>{{ i.datetime }}</p>
+                            <a class="text-decoration-none font-weight-bold text-danger" href="{% url 'todo_delete' i.id %}">delete</a>
+                            <a class="text-decoration-none font-weight-bold text-warning" href="{% url 'todo_update' i.id %}">update</a>
+                            <a class="text-decoration-none font-weight-bold text-success" href="{% url 'todo_change_data' i.id %}">change status</a>
+                            <a class="text-decoration-none font-weight-bold text-primary" href="{% url 'todo_detail'  i.id%}">details</a>
+                        </div>
+                    {% else %}
+                        <div class="text-white">
+                            <i class="fa-solid fa-tag"></i>
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+
+                        <div class="feature-icon bg-danger bg-gradient">
+                            <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+                        </div>
+                        <div class="bg-light">
+
+                        <h2>{{i.title}}</h2> 
+                        <p>{{todo.user}}</p>
+                        <a class="text-decoration-none font-weight-bold text-primary" href="{% url 'todo_detail'  i.id%}">details</a>
+                        <a class="text-decoration-none font-weight-bold text-warning" href="{% url 'todo_update' i.id %}">update</a>
+                        {% if user.is_superuser %}
+                        <a class="text-decoration-none font-weight-bold text-danger" href="{% url 'todo_delete' i.id %}">delete</a>
+                        {% else %}
+                        {%endif%}
+                        <a class="text-decoration-none font-weight-bold text-success" href="{% url 'todo_change_data' i.id %}">change status</a> 
+                        </div>
+                    {%endif%}
+
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+    </div>
+    <div>
+        {% include 'app_second/components/paginator.html' %}
+    </div>
+</main>
+{% else %}
+    <div class="container mt-2">
+    <div class="alert alert-warning" role="alert">
+        please <a href="{% url 'login_user' %}" class="alert-link">login</a> to create todo list     
+  </div>
+{% endif %} 
+{% endblock main %}
