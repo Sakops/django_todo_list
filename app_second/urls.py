@@ -2,7 +2,6 @@ from django.urls import path
 from .views import index, about, login_user, logout_user, todo_list, todo_detail, todo_delete, home
 from . import views as logic
 
-# тут только "маршруты" - адрес страницы
 urlpatterns = [
     path('', home, ""),
 
@@ -18,5 +17,4 @@ urlpatterns = [
     path(route='todo_update/<int:todo_id>', view=logic.todo_update, name="todo_update"),
     path(route='todo_change_data/<int:todo_id>/', view=logic.todo_change_data, name="todo_change_data"),
     path('logout_user', view=logout_user, name="logout_user")
-    #users
 ]
