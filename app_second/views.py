@@ -7,8 +7,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from . import forms
-# тут только "логика" - функции для обработки и возврат данных
-
+#logic here
 class Todo: 
     def __init__(self, description, name="name1"): 
         self.description = description
