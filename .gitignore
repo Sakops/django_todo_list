@@ -4,7 +4,6 @@
 
 ### Django ###
 env/
-db.sqlite3-journal
 *.log
 *.pot
 *.pyc
