@@ -9,7 +9,7 @@
 {% endblock navbar %}
 
 {% block main %}
-current user id: {{ user.username }}
+current user id: {{ todo.user.username }}
 <main class="flex-shrink-0 bg-light">
 
     <a class="text-decoration-none text-primary" href="{% url 'todo_list' %}">back</a>

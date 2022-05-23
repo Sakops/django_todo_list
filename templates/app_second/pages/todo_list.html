@@ -18,7 +18,7 @@
         <div>
             {% include 'app_second/components/paginator.html' %}
         </div>
-        logged in user_id: {{ user.id }}
+        logged in user_id: {{ todo.user.id }}
 
     <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         {% if not page %}
@@ -58,7 +58,6 @@
                         <div class="bg-light">
 
                         <h2>{{i.title}}</h2> 
-                        <p>{{todo.user}}</p>
                         <a class="text-decoration-none font-weight-bold text-primary" href="{% url 'todo_detail'  i.id%}">details</a>
                         <a class="text-decoration-none font-weight-bold text-warning" href="{% url 'todo_update' i.id %}">update</a>
                         {% if user.is_superuser %}
